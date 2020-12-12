@@ -1,0 +1,17 @@
+diff -rupN laszip-src-3.4.3/src/CMakeLists.txt laszip-src-3.4.3-new/src/CMakeLists.txt
+--- laszip-src-3.4.3/src/CMakeLists.txt	2019-11-11 21:31:12.000000000 +0100
++++ laszip-src-3.4.3-new/src/CMakeLists.txt	2020-04-14 13:58:54.570284271 +0200
+@@ -26,6 +26,8 @@ set(LASZIP_SOURCES
+     laszip.cpp
+     laszip_dll.cpp
+     mydefs.cpp
++    laszipper.cpp
++    lasunzipper.cpp
+ )
+ 
+ add_definitions(-DLASZIPDLL_EXPORTS)
+@@ -35,3 +37,4 @@ if(HAVE_UNORDERED_MAP)
+     add_definitions(-DHAVE_UNORDERED_MAP=1)
+ endif(HAVE_UNORDERED_MAP)
+ LASZIP_ADD_LIBRARY(${LASZIP_BASE_LIB_NAME} ${LASZIP_SOURCES})
++LASZIP_ADD_INCLUDES("laszip" laszip.hpp laszipper.hpp lasunzipper.hpp)
