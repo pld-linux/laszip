@@ -1,0 +1,13 @@
+--- LASzip-3.4.4/src/lasmessage.cpp.orig	2024-04-17 08:32:41.000000000 +0200
++++ LASzip-3.4.4/src/lasmessage.cpp	2024-04-21 12:52:38.780907756 +0200
+@@ -139,8 +139,8 @@ void las_default_message_handler(LAS_MES
+ 	if (!prefix.empty())
+ 	{
+ 		format_message(message, (unsigned)prefix.size());
+-		fprintf(stderr, prefix.c_str());
+-		fprintf(stderr, message.c_str());
++		fputs(prefix.c_str(), stderr);
++		fputs(message.c_str(), stderr);
+ 	}
+ 	else
+ 	{

@@ -1,19 +1,20 @@
 Summary:	LASzip - free and lossless LiDAR compression
 Summary(pl.UTF-8):	LASzip - wolnodostępna, bezstratna kompresja danych LiDARowych
 Name:		laszip
-Version:	3.4.3
+Version:	3.4.4
 Release:	1
-License:	LGPL v2.1
+License:	Apache v2.0
 Group:		Libraries
 #Source0Download: https://laszip.org/
-Source0:	https://github.com/LASzip/LASzip/releases/download/%{version}/%{name}-src-%{version}.tar.gz
-# Source0-md5:	e07be9ba6247889a4ba0bda8535c77e3
+Source0:	https://github.com/LASzip/LASzip/archive/%{version}/LASzip-%{version}.tar.gz
+# Source0-md5:	557f723c46129586aea60e842e7afad0
 Patch0:		%{name}-link.patch
 # from Fedora: restore old API for libLAS, related to https://github.com/libLAS/libLAS/issues/144
 Patch1:		%{name}-restoreapi.patch
 Patch2:		%{name}-example.patch
+Patch3:		%{name}-format.patch
 URL:		https://laszip.org/
-BuildRequires:	cmake >= 2.8.11
+BuildRequires:	cmake >= 3.10
 BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -40,10 +41,11 @@ Header files for LASzip library.
 Pliki nagłówkowe biblioteki LASzip.
 
 %prep
-%setup -q -n %{name}-src-%{version}
+%setup -q -n LASzip-%{version}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 install -d build/example
@@ -72,7 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS CHANGES.txt ChangeLog NEWS README.rst
+%doc AUTHORS CHANGES.txt ChangeLog NEWS README.md
 %attr(755,root,root) %{_libdir}/liblaszip.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/liblaszip.so.8
 %attr(755,root,root) %{_libdir}/liblaszip_api.so.*.*.*
