@@ -2,7 +2,7 @@ Summary:	LASzip - free and lossless LiDAR compression
 Summary(pl.UTF-8):	LASzip - wolnodostępna, bezstratna kompresja danych LiDARowych
 Name:		laszip
 Version:	3.4.4
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Libraries
 #Source0Download: https://laszip.org/
@@ -13,6 +13,7 @@ Patch0:		%{name}-link.patch
 Patch1:		%{name}-restoreapi.patch
 Patch2:		%{name}-example.patch
 Patch3:		%{name}-format.patch
+Patch4:		missing-header.patch
 URL:		https://laszip.org/
 BuildRequires:	cmake >= 3.10
 BuildRequires:	libstdc++-devel
@@ -42,10 +43,11 @@ Pliki nagłówkowe biblioteki LASzip.
 
 %prep
 %setup -q -n LASzip-%{version}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+%patch -P 0 -p1
+%patch -P 1 -p1
+%patch -P 2 -p1
+%patch -P 3 -p1
+%patch -P 4 -p1
 
 %build
 install -d build/example
